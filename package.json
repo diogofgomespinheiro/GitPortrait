@@ -1,0 +1,42 @@
+{
+  "name": "GitPortrait",
+  "version": "1.0.0",
+  "description": "NextJS app to show GitHub profiles and their stats.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "commit": "git-cz"
+  },
+  "author": "Diogo Pinheiro",
+  "license": "MIT",
+  "dependencies": {
+    "next": "^9.1.7",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1",
+    "swr": "^0.1.16",
+    "unfetch": "^4.1.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.4",
+    "@commitlint/config-conventional": "^8.3.4",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^4.0.1",
+    "prettier": "^1.19.1",
+    "pretty-quick": "^2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
