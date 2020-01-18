@@ -56,6 +56,7 @@ const User = () => {
         <ChartsContainer>
           <ChartSkeleton />
           <ChartSkeleton />
+          <ChartSkeleton />
         </ChartsContainer>
       )}
     </main>

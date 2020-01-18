@@ -4,14 +4,17 @@ import { Doughnut, Bar } from "react-chartjs-2";
 
 import {
   getTopLanguagesChart,
-  getRepoSizesChart
+  getRepoSizesChart,
+  getMostStarredRepos
 } from "../../utils/chart-utils";
 
 import { ChartsContainer, Chart, ChartSkeleton } from "./styles";
 
 const Charts = ({ data }) => {
   const [DoughnutData, setDoughnutData] = useState();
-  const [BarData, setBarData] = useState();
+  const [RepoSizesData, setRepoSizesData] = useState();
+  const [mostStarredReposData, setMostStarredReposData] = useState();
+
 
   const options = {
     legend: {
@@ -25,10 +28,11 @@ const Charts = ({ data }) => {
 
   useEffect(() => {
     setDoughnutData(getTopLanguagesChart(data));
-    setBarData(getRepoSizesChart(data));
+    setRepoSizesData(getRepoSizesChart(data));
+    setMostStarredReposData(getMostStarredRepos(data))
   }, []);
 
-  if (!DoughnutData || !BarData)
+  if (!DoughnutData || !RepoSizesData || !mostStarredReposData)
     return (
       <ChartsContainer>
         <ChartSkeleton />
@@ -48,7 +52,11 @@ const Charts = ({ data }) => {
       </Chart>
       <Chart>
         <h2>Largest Repostories</h2>
-        <Bar data={BarData} height={300} width={250} options={options} />
+        <Bar data={RepoSizesData} height={300} width={250} options={options} />
+      </Chart>
+      <Chart>
+        <h2>Most Starred Repositories</h2>
+        <Bar data={mostStarredReposData} height={300} width={250} options={options} />
       </Chart>
     </ChartsContainer>
   );

@@ -67,3 +67,31 @@ export const getRepoSizesChart = data => {
 
   return formatedData;
 }
+
+export const getMostStarredRepos = data => {
+  const labels = [];
+  const values = [];
+  const background = [];
+
+  const sortedData = data.sort((a,b) => b.stargazers_count - a.stargazers_count);
+  
+  for (let i = 0; i < 5; i++) {
+    labels.push(sortedData[i].name);
+    values.push(sortedData[i].stargazers_count);
+    background.push(randomColor());
+  }
+
+  const formatedData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Top 5 Starred Repositories",
+        data: values,
+        backgroundColor: background,
+        hoverBackgroundColor: background
+      }
+    ]
+  };
+
+  return formatedData;
+}
