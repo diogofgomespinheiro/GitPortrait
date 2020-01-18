@@ -20,16 +20,18 @@ export const backgroundGradient = css`
 
 export const Container = styled.div`
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display:flex;
+
+  div {
+    margin: 50px auto 0 auto;
+  }
 `;
 
 export const Title = styled.h1`
   font-size: 50px;
   color: ${colors.secondary};
   text-align: center;
+  margin-top: 20px;
 `;
 
 export const Input = styled.input`

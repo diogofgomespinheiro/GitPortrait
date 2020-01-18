@@ -6,6 +6,7 @@ import useSWR from "swr";
 
 //Component imports
 import Profile from "../components/Profile";
+import Charts from "../components/Charts";
 
 //Style imports
 import { Error } from "../styles/user";
@@ -18,11 +19,18 @@ const getUserData = async path => {
   return json;
 };
 
+const getUserRepos = async path => {
+  const res = await fetch(`${API_URL}/${path}`);
+  const json = await res.json();
+  return json;
+};
+
 const User = () => {
   const router = useRouter();
   const username = router.query.username;
 
   const userData = useSWR(`users/${username}`, getUserData);
+  const userRepos = useSWR(`users/${username}/repos?per_page=100`, getUserRepos);
 
   if (userData.data?.message === "Not Found")
     return (
@@ -31,9 +39,17 @@ const User = () => {
       </Error>
     );
 
+  if (userData.data?.message)
+    return (
+      <Error>
+        <h1>Ups you reached the limit for now, try again later.</h1>
+      </Error>
+    );
+
   return (
     <main>
       <Profile username={username} data={userData.data} />
+      <Charts data={userRepos.data} />
     </main>
   );
 };
