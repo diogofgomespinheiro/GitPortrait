@@ -10,6 +10,7 @@ import Charts from "../components/Charts";
 
 //Style imports
 import { Error } from "../styles/user";
+import { ChartsContainer, ChartSkeleton } from "../components/Charts/styles";
 
 const API_URL = "https://api.github.com";
 
@@ -49,7 +50,14 @@ const User = () => {
   return (
     <main>
       <Profile username={username} data={userData.data} />
-      <Charts data={userRepos.data} />
+      {userRepos.data ? (
+        <Charts data={userRepos.data} />
+      ) : (
+        <ChartsContainer>
+          <ChartSkeleton />
+          <ChartSkeleton />
+        </ChartsContainer>
+      )}
     </main>
   );
 };

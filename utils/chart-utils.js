@@ -38,3 +38,32 @@ export const getTopLanguagesChart = data => {
 
   return formatedData;
 };
+
+
+export const getRepoSizesChart = data => {
+  const labels = [];
+  const values = [];
+  const background = [];
+
+  const sortedData = data.sort((a,b) => b.size - a.size);
+  
+  for (let i = 0; i < 5; i++) {
+    labels.push(sortedData[i].name);
+    values.push(sortedData[i].size);
+    background.push(randomColor());
+  }
+
+  const formatedData = {
+    labels: labels,
+    datasets: [
+      {
+        label: "Top 5 - Largest Repositories (kbs)",
+        data: values,
+        backgroundColor: background,
+        hoverBackgroundColor: background
+      }
+    ]
+  };
+
+  return formatedData;
+}

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { shine, backgroundGradient } from "../../styles/index";
 
 export const ChartsContainer = styled.div`
   display: flex;
@@ -14,4 +15,20 @@ export const Chart = styled.div`
     text-align: center;
     margin-bottom: 20px;
   }
+
+  &:not(:last-child){
+    margin-right: 20px;
+  }
 `
+
+export const ChartSkeleton = styled.div`
+  height: 420px;
+  width: 330px;
+  border-radius: 20px;
+  ${backgroundGradient};
+  animation: ${shine(200, 330)} 1.6s infinite linear;
+
+  &:not(:last-child){
+    margin-right: 20px;
+  }
+`;

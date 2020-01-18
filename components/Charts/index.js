@@ -1,13 +1,17 @@
 //Library imports
 import React, { useState, useEffect } from "react";
-import { Doughnut } from "react-chartjs-2";
+import { Doughnut, Bar } from "react-chartjs-2";
 
-import { getTopLanguagesChart } from "../../utils/chart-utils";
+import {
+  getTopLanguagesChart,
+  getRepoSizesChart
+} from "../../utils/chart-utils";
 
-import { ChartsContainer, Chart } from "./styles";
+import { ChartsContainer, Chart, ChartSkeleton } from "./styles";
 
 const Charts = ({ data }) => {
   const [DoughnutData, setDoughnutData] = useState();
+  const [BarData, setBarData] = useState();
 
   const options = {
     legend: {
@@ -20,13 +24,16 @@ const Charts = ({ data }) => {
   };
 
   useEffect(() => {
-    if (data) {
-      console.log("Teste");
-      setDoughnutData(getTopLanguagesChart(data));
-    }
-  }, [data]);
+    setDoughnutData(getTopLanguagesChart(data));
+    setBarData(getRepoSizesChart(data));
+  }, []);
 
-  if (!DoughnutData) return <h1>Loading...</h1>;
+  if (!DoughnutData || !BarData)
+    return (
+      <ChartsContainer>
+        <ChartSkeleton />
+      </ChartsContainer>
+    );
 
   return (
     <ChartsContainer>
@@ -38,6 +45,10 @@ const Charts = ({ data }) => {
           width={250}
           options={options}
         />
+      </Chart>
+      <Chart>
+        <h2>Largest Repostories</h2>
+        <Bar data={BarData} height={300} width={250} options={options} />
       </Chart>
     </ChartsContainer>
   );
