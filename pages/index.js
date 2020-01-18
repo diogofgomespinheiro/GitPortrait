@@ -1,6 +1,8 @@
 //Library imports
 import React, { useState } from "react";
 import Router from "next/router";
+import Lottie from "react-lottie";
+import animationData from "../assets/github-logo.json";
 
 //Style imports
 import { Container, Title, Input } from "../styles/index";
