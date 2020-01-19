@@ -2,19 +2,20 @@
 import React, { useState, useEffect } from "react";
 import { Doughnut, Bar } from "react-chartjs-2";
 
+//Util imports
 import {
   getTopLanguagesChart,
   getRepoSizesChart,
   getMostStarredRepos
 } from "../../utils/chart-utils";
 
+//Style imports
 import { ChartsContainer, Chart, ChartSkeleton } from "./styles";
 
 const Charts = ({ data }) => {
   const [DoughnutData, setDoughnutData] = useState();
   const [RepoSizesData, setRepoSizesData] = useState();
   const [mostStarredReposData, setMostStarredReposData] = useState();
-
 
   const options = {
     legend: {
@@ -29,7 +30,7 @@ const Charts = ({ data }) => {
   useEffect(() => {
     setDoughnutData(getTopLanguagesChart(data));
     setRepoSizesData(getRepoSizesChart(data));
-    setMostStarredReposData(getMostStarredRepos(data))
+    setMostStarredReposData(getMostStarredRepos(data));
   }, []);
 
   if (!DoughnutData || !RepoSizesData || !mostStarredReposData)
@@ -55,8 +56,13 @@ const Charts = ({ data }) => {
         <Bar data={RepoSizesData} height={300} width={250} options={options} />
       </Chart>
       <Chart>
-        <h2>Most Starred Repositories</h2>
-        <Bar data={mostStarredReposData} height={300} width={250} options={options} />
+        <h2>Most Starred Repos</h2>
+        <Bar
+          data={mostStarredReposData}
+          height={300}
+          width={250}
+          options={options}
+        />
       </Chart>
     </ChartsContainer>
   );

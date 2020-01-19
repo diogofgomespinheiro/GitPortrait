@@ -7,6 +7,7 @@ import useSWR from "swr";
 //Component imports
 import Profile from "../components/Profile";
 import Charts from "../components/Charts";
+import Repos from "../components/Repos";
 
 //Style imports
 import { Error } from "../styles/user";
@@ -31,7 +32,10 @@ const User = () => {
   const username = router.query.username;
 
   const userData = useSWR(`users/${username}`, getUserData);
-  const userRepos = useSWR(`users/${username}/repos?per_page=100`, getUserRepos);
+  const userRepos = useSWR(
+    `users/${username}/repos?per_page=1000`,
+    getUserRepos
+  );
 
   if (userData.data?.message === "Not Found")
     return (
@@ -51,7 +55,10 @@ const User = () => {
     <main>
       <Profile username={username} data={userData.data} />
       {userRepos.data ? (
-        <Charts data={userRepos.data} />
+        <>
+          <Charts data={userRepos.data} />
+          <Repos data={userRepos.data} />
+        </>
       ) : (
         <ChartsContainer>
           <ChartSkeleton />
