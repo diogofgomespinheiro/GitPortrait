@@ -13,10 +13,10 @@ import {
   CardSkeleton
 } from "./styles";
 
-const Profile = ({ username, data }) => {
+const Profile = ({ username, data, loading }) => {
   return (
     <ProfileContainer>
-      {data ? (
+      {!loading ? (
         <>
           <Avatar url={data.avatar_url} />
           <Username>

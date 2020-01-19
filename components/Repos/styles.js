@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { backgroundGradient, shine } from "../../styles/index";
 
 export const ReposContainer = styled.div`
   margin: 50px auto 0 auto;
@@ -35,4 +36,12 @@ export const RepoStats = styled.div`
     display: flex;
     justify-content: flex-end;
   }
+`;
+
+export const RepoSkeleton = styled.div`
+  height: 200px;
+  padding: 20px;
+  border-radius: 10px;
+  ${backgroundGradient};
+  animation: ${shine(100, 300)} 1.6s infinite linear;
 `;

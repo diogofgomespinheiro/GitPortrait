@@ -35,6 +35,7 @@ export const Username = styled.h1`
   a {
     text-decoration: none;
     color: ${colors.secondary};
+    word-break: break-all;
   }
 `;
 
@@ -45,12 +46,16 @@ export const UsernameSkeleton = styled.div`
   border-radius: 50px;
   ${backgroundGradient};
   animation: ${shine(200, 300)} 1.6s infinite linear;
+
+  @media only screen and (max-width: 500px) {
+    width: 80%;
+  }
 `;
 export const CardContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: center;
   flex-wrap: wrap;
+  justify-content: center;
   margin-top: 20px;
 `;
 
@@ -64,10 +69,7 @@ export const Card = styled.div`
   color: black;
   border-radius: 15px;
   background-color: rgba(255, 255, 255, 0.8);
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
+  margin: 5px;
 `;
 
 export const CardSkeleton = styled.div`
@@ -77,8 +79,5 @@ export const CardSkeleton = styled.div`
   border-radius: 15px;
   ${backgroundGradient};
   animation: ${shine(100, 150)} 1.6s infinite linear;
-
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
+  margin: 5px;
 `;

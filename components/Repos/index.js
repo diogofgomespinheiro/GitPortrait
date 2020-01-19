@@ -12,7 +12,7 @@ const Repos = ({ data }) => {
   );
 
   const defaultOptions = {
-    loop: false,
+    loop: true,
     autoplay: true,
     animationData: animationData,
     rendererSettings: {
@@ -30,7 +30,7 @@ const Repos = ({ data }) => {
           padding: "10px"
         }}
       >
-        Repositories
+        Top 10 - Repositories
       </h1>
       <ReposContainer>
         {sortedData.slice(0, 10).map((repo, index) => {
@@ -40,9 +40,18 @@ const Repos = ({ data }) => {
               onClick={() => window.open(repo.svn_url, "_blank")}
             >
               <h3>{repo.name}</h3>
-              <p>{repo.description?.slice(0, 100)}</p>
+              {repo.description?.length > 100 ? (
+                <p>{repo.description?.slice(0, 100)}...</p>
+              ) : (
+                <p>{repo.description}</p>
+              )}
               <RepoStats>
-                <Lottie options={defaultOptions} height={20} width={50} />
+                <Lottie
+                  options={defaultOptions}
+                  height={20}
+                  width={50}
+                  speed={0.4}
+                />
                 <span>{repo.stargazers_count}</span>
                 <span>{repo.size} KB</span>
               </RepoStats>

@@ -12,6 +12,7 @@ import Repos from "../components/Repos";
 //Style imports
 import { Error } from "../styles/user";
 import { ChartsContainer, ChartSkeleton } from "../components/Charts/styles";
+import { RepoSkeleton, ReposContainer } from "../components/Repos/styles";
 
 const API_URL = "https://api.github.com";
 
@@ -44,7 +45,7 @@ const User = () => {
       </Error>
     );
 
-  if (userData.data?.message)
+  if (userData.data?.message || userRepos.data?.message)
     return (
       <Error>
         <h1>Ups you reached the limit for now, try again later.</h1>
@@ -53,18 +54,31 @@ const User = () => {
 
   return (
     <main>
-      <Profile username={username} data={userData.data} />
+      <Profile
+        username={username}
+        data={userData.data}
+        loading={!userData.data ? true : false}
+      />
       {userRepos.data ? (
         <>
           <Charts data={userRepos.data} />
           <Repos data={userRepos.data} />
         </>
       ) : (
-        <ChartsContainer>
-          <ChartSkeleton />
-          <ChartSkeleton />
-          <ChartSkeleton />
-        </ChartsContainer>
+        <>
+          <ChartsContainer>
+            <ChartSkeleton />
+            <ChartSkeleton />
+            <ChartSkeleton />
+          </ChartsContainer>
+          <ReposContainer>
+            <RepoSkeleton />
+            <RepoSkeleton />
+            <RepoSkeleton />
+            <RepoSkeleton />
+            <RepoSkeleton />
+          </ReposContainer>
+        </>
       )}
     </main>
   );
