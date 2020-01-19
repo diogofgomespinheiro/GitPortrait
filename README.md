@@ -1,6 +1,6 @@
 # GitPortrait
 
-Simple Next.js application to check your Github stats.
+Simple Next.js application to check your Github stats. (Inspired at Brittany Chiang OctoProfile).
 
 ## Setup:
 
