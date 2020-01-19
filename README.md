@@ -7,4 +7,6 @@ Simple Next.js application to check your Github stats.
 run yarn\
 run yarn dev
 
-![GitPortrait]()
+![GitPortrait](https://raw.githubusercontent.com/diogofgomespinheiro/GitPortrait/master/gp.JPG)
+
+## Check it out at https://gitportrait.now.sh/
