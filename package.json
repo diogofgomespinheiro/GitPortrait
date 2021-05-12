@@ -12,7 +12,7 @@
   "author": "Diogo Pinheiro",
   "license": "MIT",
   "dependencies": {
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "next": "^9.1.7",
     "react": "^16.12.0",
     "react-chartjs-2": "^2.8.0",
